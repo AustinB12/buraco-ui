@@ -1,13 +1,13 @@
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
+import { Signup_Page } from "~/auth/signup_page";
 
 export function meta({}: Route.MetaArgs) {
 	return [
-		{ title: "Lets Play Cards!" },
+		{ title: "Sugn Up to Play!" },
 		{ name: "description", content: "Welcome to Buraco!" }
 	];
 }
 
-export default function Home() {
-	return <Welcome />;
+export default function Register() {
+	return <Signup_Page />;
 }
