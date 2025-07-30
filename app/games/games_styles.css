@@ -1,0 +1,39 @@
+#four-player-game-container {
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+
+	height: calc(100vh - 5.5rem);
+
+	.team {
+		.team-name {
+			font-weight: bold;
+		}
+
+		.players {
+			display: flex;
+			gap: 0.5rem;
+
+			.player {
+				height: 8vw;
+				width: 8vw;
+				border-radius: 1rem;
+
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.player[data-team="1"] {
+				background-color: #7d15202d;
+			}
+			.player[data-team="2"] {
+				background-color: #22138f36;
+			}
+
+			.player[data-current-player="true"] {
+				color: green;
+			}
+		}
+	}
+}

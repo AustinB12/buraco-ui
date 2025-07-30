@@ -1,13 +1,14 @@
-import { useState } from "react";
-import { useNavigate } from "react-router";
+import { use, useState } from "react";
+import { Link } from "react-router";
 import supabase from "~/utils/sb_client";
 
 import "./nav_styles.css";
+import { SessionContext, useSession } from "~/context/session_context";
 
 export const Nav_Bar = () => {
 	const [player_name, setPlayerName] = useState<string | null>(null);
 
-	const nav = useNavigate();
+	const { player } = use(SessionContext);
 
 	async function get_player_name() {
 		const { data, error } = await supabase
@@ -22,17 +23,14 @@ export const Nav_Bar = () => {
 		}
 	}
 
-	get_player_name();
+	if (!player_name) get_player_name();
 
 	async function signOut() {
-		const { error } = await supabase.auth.signOut();
-
-		if (!error) nav("/login");
+		supabase.auth.signOut();
 	}
 	return (
-		<header className="">
+		<header>
 			<div className="flex items-center">
-				{/* <span className="text-xl font-bold text-white">Buraco</span> */}
 				<input type="checkbox" id="checkbox" />
 				<label htmlFor={"checkbox"} className="toggle">
 					<div className="bars" id="bar1"></div>
@@ -42,18 +40,12 @@ export const Nav_Bar = () => {
 			</div>
 
 			<nav>
-				<a href="/" className="text-white px-3 py-2 cursor-pointer">
-					Play Now
-				</a>
-				<a href="/rules" className="text-white px-3 py-2 cursor-pointer">
-					Rules
-				</a>
-				<a href="/profile" className="text-white px-3 py-2 cursor-pointer">
-					Profile
-				</a>
-				<a onClick={signOut} className="text-white px-3 py-2 cursor-pointer">
+				<Link to={"/games/" + player?.id}>Play</Link>
+				<Link to="/rules">Rules</Link>
+				<Link to="/profile">Profile</Link>
+				<Link to="/login" onClick={signOut}>
 					Sign Out
-				</a>
+				</Link>
 			</nav>
 
 			<div className="flex items-center space-x-4">

@@ -2,7 +2,7 @@ import type { Route } from "./+types/how_to_play";
 
 export function meta({}: Route.MetaArgs) {
 	return [
-		{ title: "Profile Page" },
+		{ title: "How To Play" },
 		{ name: "description", content: "User profile information" }
 	];
 }

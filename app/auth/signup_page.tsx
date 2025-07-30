@@ -12,10 +12,13 @@ export const Signup_Page = () => {
 	const handle_submit = (e: React.FormEvent) => {
 		e.preventDefault();
 
-		supabase.auth.signUp({ email, password }).then(({ error }) => {
+		supabase.auth.signUp({ email, password }).then(async ({ error, data }) => {
 			if (error) {
 				alert("Signup failed: " + error.message);
 			} else {
+				const { error } = await supabase
+					.from("players")
+					.insert({ user_id: data.user?.id, name: username });
 				nav("/");
 			}
 		});

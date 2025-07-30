@@ -2,7 +2,7 @@ import type { Route } from "../+types/root";
 
 export function meta({}: Route.MetaArgs) {
 	return [
-		{ title: "Profile Page" },
+		{ title: "Your Profile" },
 		{ name: "description", content: "User profile information" }
 	];
 }

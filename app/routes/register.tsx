@@ -3,7 +3,7 @@ import { Signup_Page } from "~/auth/signup_page";
 
 export function meta({}: Route.MetaArgs) {
 	return [
-		{ title: "Sugn Up to Play!" },
+		{ title: "Sign Up!" },
 		{ name: "description", content: "Welcome to Buraco!" }
 	];
 }

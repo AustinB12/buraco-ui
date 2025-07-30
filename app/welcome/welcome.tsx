@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import supabase from "~/utils/sb_client";
 
 export function Welcome() {
 	const [cards, setCards] = useState<any[]>([]);
+
+	const nav = useNavigate();
 
 	useEffect(() => {
 		get_cards();
@@ -28,7 +31,10 @@ export function Welcome() {
 	}
 
 	return (
-		<main className="flex items-center justify-center pt-16 pb-4">
+		<main
+			className="flex items-center justify-center pt-16 pb-4"
+			onDoubleClick={() => nav("admin")}
+		>
 			<div className="flex-1 flex flex-wrap items-center gap-2 min-h-0">
 				{cards &&
 					cards.length > 0 &&
